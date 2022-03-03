@@ -33,7 +33,12 @@ export const getTournament = (req: Request, res: Response) => {
   const id = req.params['id'];
 
   const tournament = tournamentRepository.getTournament(id);
-
+if (tournament) {
   res.status(200);
   res.send(tournament);
+}else{
+  res.status(400);
+  res.send({message:"This tournament does not exist"});
+}
+  
 };
