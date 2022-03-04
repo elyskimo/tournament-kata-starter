@@ -15,7 +15,11 @@ export class TournamentRepository {
     return Array.from(this.tournaments.values()).find((item: Tournament) => item.name === tournamentName);
   }
 
-  public addParticipation(tournamentId: string, participant: Participant): void {
+  public addParticipant(tournamentId: string, participant: Participant): void {
+    this.tournaments.get(tournamentId).participants.push(participant);
+  }
+
+  public getParticipant(tournamentId: string, participant: Participant): void {
     this.tournaments.get(tournamentId).participants.push(participant);
   }
 }
