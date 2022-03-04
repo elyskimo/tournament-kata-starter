@@ -8,7 +8,6 @@ export class TournamentRepository {
   }
 
   public getTournament(tournamentId: string): Tournament {
-    console.log("ttttttournaments",this.tournaments);
     return this.tournaments.get(tournamentId);
   }
 
@@ -20,7 +19,7 @@ export class TournamentRepository {
     this.tournaments.get(tournamentId).participants.push(participant);
   }
 
-  public getParticipant(tournamentId: string, participant: Participant): void {
-    this.tournaments.get(tournamentId).participants.push(participant);
+  public getParticipant(tournament: Tournament, participantName: string): Participant {
+    return tournament.participants.find((item: Participant) => item.name === participantName);
   }
 }
