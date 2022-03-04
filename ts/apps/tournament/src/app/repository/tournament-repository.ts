@@ -1,4 +1,4 @@
-import { Tournament } from '../api/api-model';
+import { Tournament, Participant } from '../api/api-model';
 
 export class TournamentRepository {
   private tournaments = new Map<string, Tournament>();
@@ -12,6 +12,10 @@ export class TournamentRepository {
   }
 
   public getTournamentByName(tournamentName: string): Tournament {
-     return Array.from(this.tournaments.values()).find((item: Tournament) => item.name === tournamentName);
+    return Array.from(this.tournaments.values()).find((item: Tournament) => item.name === tournamentName);
+  }
+
+  public addParticipation(tournamentId: string, participant: Participant): void {
+    this.tournaments.get(tournamentId).participants.push(participant);
   }
 }
