@@ -8,6 +8,7 @@ export class TournamentRepository {
   }
 
   public getTournament(tournamentId: string): Tournament {
+    console.log("ttttttournaments",this.tournaments);
     return this.tournaments.get(tournamentId);
   }
 

@@ -18,7 +18,7 @@ export const postParticipant = (req: Request, res: Response) => {
   const participant: Participant = req.body;
 
   if (tournamentRepository.getTournament(id)) {
-    tournamentRepository.addParticipation(id, participant);
+    tournamentRepository.addParticipant(id, participant);
     res.status(200);
     return res.send({ message: 'This participant was added successfully' });
   } else {
@@ -42,11 +42,12 @@ if (tournament) {
 };
 
 export const getParticipants = (req: Request, res: Response) => {
-  console.log("-----------------get participants",req.body)
+  console.log("-----------------get participants",req.params['id'], req.params.id)
 
   const tournamentId = req.params['id'];
 
   const tournament = tournamentRepository.getTournament(tournamentId);
+  console.log("********************* tournament",tournament);
   if (tournament) {
     res.status(200);
     res.send({ participants: tournament.participants});

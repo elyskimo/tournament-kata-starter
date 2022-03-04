@@ -22,7 +22,7 @@ export const postTournament = (req: Request, res: Response) => {
     return res.send({message: "can't create tournament, the name already exist"});
   }
 
-  const tournament = { id: uuidv4(), name: tournamentToAdd.name, phases: [], participants: [] };
+  const tournament = { id: uuidv4(), name: tournamentToAdd.name, phases: [], participants: req.body?.participants || [] };
   tournamentRepository.saveTournament(tournament);
 
   res.status(201);
