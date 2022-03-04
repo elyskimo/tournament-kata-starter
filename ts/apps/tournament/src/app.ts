@@ -11,6 +11,7 @@ app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to tournament!' });
 });
 
+app.get('/api/tournaments/:id/participants', getParticipants);
 app.post('/api/tournaments', postTournament);
 app.get('/api/tournaments/:id', getTournament);
 

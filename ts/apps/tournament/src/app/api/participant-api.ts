@@ -26,3 +26,33 @@ export const postParticipant = (req: Request, res: Response) => {
     return res.send({ message: 'This tournament does not exist' });
   }
 };
+
+export const getParticipant = (req: Request, res: Response) => {
+  const id = req.params['id'];
+
+  const tournament = tournamentRepository.getTournament(id);
+if (tournament) {
+  res.status(200);
+  res.send(tournament);
+}else{
+  res.status(400);
+  res.send({message:"This tournament does not exist"});
+}
+
+};
+
+export const getParticipants = (req: Request, res: Response) => {
+  console.log("-----------------get participants",req.body)
+
+  const tournamentId = req.params['id'];
+
+  const tournament = tournamentRepository.getTournament(tournamentId);
+  if (tournament) {
+    res.status(200);
+    res.send({ participants: tournament.participants});
+  }else{
+    res.status(400);
+    res.send({message:"This tournament does not exist"});
+  }
+
+};
