@@ -32,6 +32,15 @@ describe('/tournament/participants endpoint', () => {
       name: participantName,
       elo: Math.floor(Math.random() * 3),
     } as Participant;
+  describe('[GET] list of participant for specific tournament', () => {
+    it('should return a list of participants', async () => {
+      const { body } = await request(app).post('/api/tournaments').send(exampleTournament).expect(201);
+
+      const get = await request(app).get('/api/tournaments/' + body.id +'/participants' ).expect(201);
+      expect(get.body.participants).not.toBeUndefined();
+    });
+  });
+});
 
     await request(app)
       .post('/api/tournaments/' + tournamentId + '/participants')
