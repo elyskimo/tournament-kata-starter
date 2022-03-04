@@ -12,6 +12,11 @@ export interface Participant {
   elo: number;
 }
 
+export interface ParticipantToAdd {
+  tournamentId: string;
+  participant: Participant;
+}
+
 export interface TournamentToAdd {
   name: string;
 }
