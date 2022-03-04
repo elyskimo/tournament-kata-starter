@@ -12,6 +12,6 @@ export class TournamentRepository {
   }
 
   public getTournamentByName(tournamentName: string): Tournament {
-     return Array.from(this.tournaments.values()).filter((item: Tournament) => item.name === tournamentName)[0];
+     return Array.from(this.tournaments.values()).find((item: Tournament) => item.name === tournamentName);
   }
 }

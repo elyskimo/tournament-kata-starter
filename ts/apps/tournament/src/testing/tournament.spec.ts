@@ -18,7 +18,7 @@ describe('/tournament endpoint', () => {
     it('the name doesnt exist ', async () => {
       const { body } = await request(app).post('/api/tournaments').send({}).expect(400);
 
-      expect(body.message).toEqual("can't create tournament, the name has been given");
+      expect(body.message).toEqual("can't create tournament, the name is missing");
     });
 
     it('the name is empty', async () => {

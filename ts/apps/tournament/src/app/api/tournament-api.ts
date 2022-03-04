@@ -9,9 +9,9 @@ export const postTournament = (req: Request, res: Response) => {
 
   if (!Object.keys(req.body).length) {
      res.status(400);
-     return res.send({message: "can't create tournament, the name has been given"});
+     return res.send({message: "can't create tournament, the name is missing"});
   }
-  if (!req.body.name.length) {
+  if (!req.body.name?.length) {
     res.status(400);
     return res.send({message: "can't create tournament, the name is empty"});
   }
@@ -40,5 +40,5 @@ if (tournament) {
   res.status(400);
   res.send({message:"This tournament does not exist"});
 }
-  
+
 };
