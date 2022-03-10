@@ -1,10 +1,18 @@
 import { Tournament, Participant } from '../api/api-model';
+import { TournamentModel } from '../models/tournament';
+import { createItem } from '../middleware/db/createItem';
 
 export class TournamentRepository {
   private tournaments = new Map<string, Tournament>();
 
-  public saveTournament(tournament: Tournament): void {
-    this.tournaments.set(tournament.id, tournament);
+  public async saveTournament(tournament: Tournament): Promise<boolean> {
+    try {
+      this.tournaments.set(tournament.id, tournament);
+      await createItem(tournament, TournamentModel);
+      return true;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   public getTournament(tournamentId: string): Tournament {
