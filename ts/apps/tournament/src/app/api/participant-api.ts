@@ -11,7 +11,8 @@ export const postParticipant = (req: Request, res: Response) => {
     res.status(400);
     return res.send({ message: 'No data to set' });
   }*/
-  if (!req.body.name?.length || !req.body.elo) {
+  console.log('req.body here', req.body);
+  if (!req.body.name?.length || isNaN(req.body.elo)) {
     res.status(400);
     return res.send({ message: "can't add this participant, the name or the elo is empty" });
   }
