@@ -19,7 +19,7 @@ const tournamentId = (Math.random() + 1).toString(36).substring(7);
 describe('/tournament/participants endpoint', () => {
   describe('[POST] when adding a participant in a tournament', () => {
     it('Tournament does not exist', async () => {
-      console.log('exampleParticipant', exampleParticipant);
+
       const { body } = await request(app)
         .post('/api/tournaments/' + tournamentId + '/participants')
         .send(exampleParticipant)
@@ -42,7 +42,7 @@ describe('/tournament/participants endpoint', () => {
         elo: Math.floor(Math.random() * 3),
       } as Participant;
       const response = await request(app).post('/api/tournaments').send(exampleTournament).expect(201);
-      console.log('response', response.body);
+
       await request(app)
         .post('/api/tournaments/' + response.body.id + '/participants')
         .send(newParticipant)
@@ -65,7 +65,7 @@ describe('/tournament/participants endpoint', () => {
       const get = await request(app)
         .get('/api/tournaments/' + response.body.id + '/participants')
         .expect(200);
-      console.log('response', get.body.participants);
+
       expect(Array.isArray(get.body.participants)).toBe(true);
     });
   });
