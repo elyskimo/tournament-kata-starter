@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { TournamentRepository } from '../repository/tournament-repository';
-import { TournamentToAdd } from './api-model';
+// import { TournamentRepository } from '../repository/tournament-repository';
+import { TournamentToAdd, tournamentRepository } from './api-model';
 import { v4 as uuidv4 } from 'uuid';
 
-const tournamentRepository = new TournamentRepository();
+// const tournamentRepository = new TournamentRepository();
 
 export const postTournament = async (req: Request, res: Response) => {
   if (!Object.keys(req.body).length) {

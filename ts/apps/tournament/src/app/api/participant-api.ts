@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { TournamentRepository } from '../repository/tournament-repository';
-import { Participant } from './api-model';
+// import { TournamentRepository } from '../repository/tournament-repository';
+import { Participant, tournamentRepository } from './api-model';
 
-const tournamentRepository = new TournamentRepository();
+// const tournamentRepository = new TournamentRepository();
 
 export const postParticipant = (req: Request, res: Response) => {
   const id = req.params['id'];
@@ -18,11 +18,11 @@ export const postParticipant = (req: Request, res: Response) => {
 
   const tournament = tournamentRepository.getTournament(id);
   const participant: Participant = req.body;
-
+  console.log("add participant", id,tournament);
   if (tournament) {
     if (!tournamentRepository.getParticipant(tournament, participant.name)) {
       tournamentRepository.addParticipant(id, participant);
-      res.status(200);
+      res.status(201);
       return res.send({ message: 'This participant was added successfully' });
     } else {
       res.status(404);
@@ -48,16 +48,14 @@ export const getParticipant = (req: Request, res: Response) => {
 };
 
 export const getParticipants = (req: Request, res: Response) => {
-  console.log("-----------------get participants",req.body)
 
   const tournamentId = req.params['id'];
-
   const tournament = tournamentRepository.getTournament(tournamentId);
   if (tournament) {
     res.status(200);
     res.send({ participants: tournament.participants});
   }else{
-    res.status(400);
+    res.status(404);
     res.send({message:"This tournament does not exist"});
   }
 

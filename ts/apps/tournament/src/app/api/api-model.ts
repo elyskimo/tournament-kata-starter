@@ -1,3 +1,7 @@
+import { TournamentRepository } from '../repository/tournament-repository';
+
+export const tournamentRepository = new TournamentRepository();
+
 export enum TournamentPhaseType {
   SingleBracketElimination = 'SingleBracketElimination',
   SwissRound = 'SwissRound',
