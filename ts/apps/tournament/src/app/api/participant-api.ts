@@ -11,14 +11,13 @@ export const postParticipant = (req: Request, res: Response) => {
     res.status(400);
     return res.send({ message: 'No data to set' });
   }*/
-  if (!req.body.name?.length || !req.body.elo) {
+  if (!req.body.name?.length || isNaN(req.body.elo)) {
     res.status(400);
     return res.send({ message: "can't add this participant, the name or the elo is empty" });
   }
 
   const tournament = tournamentRepository.getTournament(id);
   const participant: Participant = req.body;
-  console.log("add participant", id,tournament);
   if (tournament) {
     if (!tournamentRepository.getParticipant(tournament, participant.name)) {
       tournamentRepository.addParticipant(id, participant);

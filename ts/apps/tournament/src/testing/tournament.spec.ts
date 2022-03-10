@@ -1,9 +1,11 @@
 import { app } from '../app';
 import * as request from 'supertest';
 import { Tournament, TournamentPhaseType } from '../app/api/api-model';
+import { initMongo } from '../config/mongo';
+initMongo();
 
 const exampleTournament = {
-  id:(Math.random() + 1).toString(36).substring(5),
+  id: (Math.random() + 1).toString(36).substring(5),
   name: (Math.random() + 1).toString(36).substring(7),
 } as Tournament;
 
@@ -22,7 +24,7 @@ describe('/tournament endpoint', () => {
     });
 
     it('the name is empty', async () => {
-      const { body } = await request(app).post('/api/tournaments').send({name: ''}).expect(400);
+      const { body } = await request(app).post('/api/tournaments').send({ name: '' }).expect(400);
 
       expect(body.message).toEqual("can't create tournament, the name is empty");
     });
@@ -53,8 +55,10 @@ describe('/tournament endpoint', () => {
   });
   describe('[GET] when user want tournament descriptions', () => {
     it('tournament does not exist', async () => {
-      const { body } = await request(app).get('/api/tournaments/' + exampleTournament.id ).expect(400);
-      expect(body.message).toEqual("This tournament does not exist");
+      const { body } = await request(app)
+        .get('/api/tournaments/' + exampleTournament.id)
+        .expect(400);
+      expect(body.message).toEqual('This tournament does not exist');
     });
   });
 });
