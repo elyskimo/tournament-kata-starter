@@ -68,5 +68,23 @@ describe('/tournament/participants endpoint', () => {
 
       expect(Array.isArray(get.body.participants)).toBe(true);
     });
+
+    it('returns tournament description', async () => {
+      const response = await request(app)
+        .post('/api/tournaments')
+        .send({ name: (Math.random() + 1).toString(36).substring(7), participants: [{
+            name: (Math.random() + 1).toString(36).substring(7),
+            elo: Math.floor(Math.random() * 3),
+          } as Participant] } as Tournament)
+        .expect(201);
+
+      const { body } = await request(app)
+        .get('/api/tournaments/' + response.id)
+        .expect(200);
+      expect(body.id).not.toBeUndefined();
+      expect(body.name).not.toBeUndefined();
+      expect(body.participants).not.toBeUndefined();
+      expect(Array.isArray(body.participants)).toBe(true);
+    });
   });
 });
