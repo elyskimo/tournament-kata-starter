@@ -28,6 +28,13 @@ export interface Tournament {
   participants: Participant[];
 }
 
+export interface TournamentMongo {
+  _id: string,
+  name: string,
+  phases: TournamentPhase[];
+  participants: Participant[];
+}
+
 export interface Round {
   name: string;
   matches: Match[];

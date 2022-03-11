@@ -60,5 +60,6 @@ describe('/tournament endpoint', () => {
         .expect(400);
       expect(body.message).toEqual('This tournament does not exist');
     });
+
   });
 });
