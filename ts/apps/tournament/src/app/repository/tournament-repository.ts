@@ -2,15 +2,29 @@ import { Tournament, Participant } from '../interfaces';
 import { TournamentModel } from '../models/tournament';
 import { createItem } from '../middleware/db/createItem';
 // TODO: remove tournamentRepository instance everywhere
+
 export class TournamentRepository {
+
   private tournaments = new Map<string, Tournament>();
 
   public async saveTournament(tournament: Tournament): Promise<boolean> {
+
     try {
+
       this.tournaments.set(tournament.id, tournament);
-      await createItem(tournament, TournamentModel);
-      return true;
+
+      return new Promise((resolve, reject) => {
+
+        createItem(tournament.id, tournament).then(() => {
+          resolve(true);
+        },
+        () => {
+          reject(false);
+        });
+      });
+
     } catch (err) {
+
       console.log(err);
     }
   }
@@ -30,4 +44,9 @@ export class TournamentRepository {
   public getParticipant(tournament: Tournament, participantName: string): Participant {
     return tournament.participants.find((item: Participant) => item.name === participantName);
   }
+
+  // public async deleteParticipant(tournamentId: string, participant: Participant): Promise<boolean> {
+
+    
+  // }
 }

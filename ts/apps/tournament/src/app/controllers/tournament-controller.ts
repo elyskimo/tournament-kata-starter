@@ -27,10 +27,16 @@ export const postTournament = async (req: Request, res: Response) => {
     phases: req.body?.phases || [],
     participants: req.body?.participants || [],
   };
-  await tournamentRepository.saveTournament(tournament);
+  //const test = await tournamentRepository.saveTournament(tournament);
 
-  res.status(201);
-  res.send({ id: tournament.id });
+  tournamentRepository.saveTournament(tournament).then(() => {
+    res.status(201);
+    res.send({ id: tournament.id });
+  },
+  () => {
+    res.status(400).send('error during insert');
+  }
+  )
 };
 
 export const getTournament = (req: Request, res: Response) => {
