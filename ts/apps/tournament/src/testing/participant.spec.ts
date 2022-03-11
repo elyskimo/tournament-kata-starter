@@ -2,7 +2,6 @@ import { app } from '../app';
 import * as request from 'supertest';
 import { Participant, Tournament } from '../app/api/api-model';
 import { initMongo } from '../config/mongo';
-initMongo();
 
 const exampleParticipant = {
   name: (Math.random() + 1).toString(36).substring(7),
@@ -16,6 +15,7 @@ const exampleTournament = {
 } as Tournament;
 
 const tournamentId = (Math.random() + 1).toString(36).substring(7);
+beforeAll(() => initMongo());
 describe('/tournament/participants endpoint', () => {
   describe('[POST] when adding a participant in a tournament', () => {
     it('Tournament does not exist', async () => {

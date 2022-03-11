@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 // import { TournamentRepository } from '../repository/tournament-repository';
-import { TournamentToAdd, tournamentRepository } from './api-model';
+import { TournamentToAdd, tournamentRepository } from '../api/api-model';
 import { v4 as uuidv4 } from 'uuid';
 
 // const tournamentRepository = new TournamentRepository();

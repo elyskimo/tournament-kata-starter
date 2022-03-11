@@ -1,6 +1,6 @@
 import * as express from 'express';
-import { getTournament, postTournament } from './app/api/tournament-api';
-import { postParticipant, getParticipants } from './app/api/participant-api';
+import { getTournament, postTournament } from './app/controllers/tournament-controller';
+import { postParticipant, getParticipants } from './app/controllers/participant-controller';
 import * as bodyParser from 'body-parser';
 
 export const app = express();
