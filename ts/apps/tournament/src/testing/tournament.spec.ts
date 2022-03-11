@@ -1,6 +1,6 @@
 import { app } from '../app';
 import * as request from 'supertest';
-import { Tournament, TournamentPhaseType } from '../app/api/api-model';
+import { Tournament, TournamentPhaseType } from '../app/interfaces';
 import { initMongo } from '../config/mongo';
 initMongo();
 

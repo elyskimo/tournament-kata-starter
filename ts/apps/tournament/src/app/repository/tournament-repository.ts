@@ -1,4 +1,4 @@
-import { Tournament, Participant } from '../api/api-model';
+import { Tournament, Participant } from '../interfaces';
 import { TournamentModel } from '../models/tournament';
 import { createItem } from '../middleware/db/createItem';
 
