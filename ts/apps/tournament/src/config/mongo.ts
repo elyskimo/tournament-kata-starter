@@ -15,9 +15,9 @@ export const initMongo = () => {
       (err) => {
         let dbStatus = '';
         if (err) {
-          dbStatus = `*    Error connecting to DB: ${err}\n****************************\n`;
+          dbStatus = `*    Error connecting to DB: ${err}`;
         }
-        dbStatus = `*    DB Connection: OK\n****************************\n`;
+        dbStatus = `*    DB Connection: OK`;
         if (process.env.NODE_ENV !== 'test') {
           // Prints initialization
           /*console.log('****************************');
