@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 // import { TournamentRepository } from '../repository/tournament-repository';
-import { Participant, tournamentRepository } from './api-model';
+import { Participant, tournamentRepository } from '../api/api-model';
 
 // const tournamentRepository = new TournamentRepository();
 
