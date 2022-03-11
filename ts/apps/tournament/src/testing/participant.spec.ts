@@ -1,6 +1,6 @@
 import { app } from '../app';
 import * as request from 'supertest';
-import { Participant, Tournament } from '../app/api/api-model';
+import { Participant, Tournament } from '../app/interfaces';
 import { initMongo } from '../config/mongo';
 
 const exampleParticipant = {
