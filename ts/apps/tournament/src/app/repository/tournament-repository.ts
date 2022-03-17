@@ -1,7 +1,7 @@
 import { Tournament, Participant } from '../interfaces';
 import { TournamentModel } from '../models/tournament';
 import { createItem } from '../middleware/db/createItem';
-
+// TODO: remove tournamentRepository instance everywhere
 export class TournamentRepository {
   private tournaments = new Map<string, Tournament>();
 

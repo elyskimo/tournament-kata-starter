@@ -15,6 +15,7 @@ const exampleTournament = {
 } as Tournament;
 
 const tournamentId = (Math.random() + 1).toString(36).substring(7);
+
 beforeAll(() => initMongo());
 describe('/tournament/participants endpoint', () => {
   describe('[POST] when adding a participant in a tournament', () => {
