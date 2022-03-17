@@ -1,12 +1,14 @@
 import { app } from '../app';
 import * as request from 'supertest';
-import { Tournament, TournamentPhaseType, TournamentPhase } from '../app/interfaces';
+import { Tournament, Participant, TournamentPhaseType, TournamentPhase } from '../app/interfaces';
+import { initMongo } from '../config/mongo';
 
 const exampleTournamentPhase = {
   type:
     Math.floor(Math.random() * 1) === 0 ? TournamentPhaseType.SingleBracketElimination : TournamentPhaseType.SwissRound,
 } as TournamentPhase;
 
+beforeAll(() => initMongo());
 describe('/tournament/{id}/phases endpoint', () => {
   describe('[POST New phase: single elimination table', () => {
     it('Phase : Tournament does not exist', async () => {
