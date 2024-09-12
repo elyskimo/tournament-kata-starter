@@ -1,3 +1,7 @@
+import { TournamentRepository } from '../repository/tournament-repository';
+
+export const tournamentRepository = new TournamentRepository();
+
 export enum TournamentPhaseType {
   SingleBracketElimination = 'SingleBracketElimination',
   SwissRound = 'SwissRound',
@@ -20,6 +24,13 @@ export interface Tournament {
   id: string;
   name: string;
 
+  phases: TournamentPhase[];
+  participants: Participant[];
+}
+
+export interface TournamentMongo {
+  _id: string,
+  name: string,
   phases: TournamentPhase[];
   participants: Participant[];
 }
